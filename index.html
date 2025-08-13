@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wildlife Through My Lens</title>
+<meta name="description" content="Wildlife photography portfolio" />
+<style>
+  :root{
+    --bg-image: url("IMG_4614.JPEG"); /* Photographer overlay */
+    --accent: #e6a742;
+    --text: #f3f3f3;
+    --muted: #c7c7c7;
+    --overlay: rgba(0,0,0,.45);
+    --maxw: 1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+    background:#0e1210; color:var(--text);
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* Hero */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+    filter:brightness(0.8) saturate(1.1);
+  }
+  .photographer{
+    position:absolute;
+    inset:0;
+    background-image: var(--bg-image);
+    background-size:cover;
+    background-position:center;
+    opacity:0.4;
+    z-index:-2;
+  }
+  .mist{
+    position:absolute;
+    inset:0;
+    background:url("images/mist.png") repeat-x;
+    background-size:contain;
+    animation:mistMove 60s linear infinite;
+    opacity:0.35;
+    z-index:-1;
+  }
+  @keyframes mistMove{
+    from{background-position:0 0;}
+    to{background-position:2000px 0;}
+  }
+  #leaves-canvas{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+  }
+  /* Nav */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:10;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 18px;
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(6px);
+  }
+  .menu a{padding:8px 12px;border-radius:8px;transition:background .3s}
+  .menu a:hover{background:rgba(255,255,255,.08)}
+  /* Hero text */
+  .hero-inner{
+    position:relative;
+    z-index:1;
+    max-width:900px;
+    padding:0 18px;
+  }
+  h1{
+    font-size:clamp(38px, 6vw, 72px);
+    margin:16px 0;
+    text-shadow:0 4px 20px rgba(0,0,0,0.5);
+  }
+  .sub{color:var(--muted);max-width:60ch;margin:0 auto;}
+  .cta{
+    display:inline-block;
+    margin-top:20px;
+    background:var(--accent);
+    color:#1a1205;
+    padding:12px 18px;
+    border-radius:8px;
+    font-weight:700;
+  }
+  /* Sound button */
+  .sound-btn{
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    background:rgba(0,0,0,0.5);
+    border:none;
+    color:white;
+    padding:10px 14px;
+    border-radius:50%;
+    cursor:pointer;
+  }
+  /* Gallery */
+  #gallery { padding:70px 18px; background:#0e1210; }
+  #gallery h2 { text-align:center; margin-bottom:30px; }
+  .gallery-grid { columns:1; column-gap:14px; }
+  @media (min-width:640px) { .gallery-grid { columns:2; } }
+  @media (min-width:1024px) { .gallery-grid { columns:3; } }
+  .tile { position:relative; margin-bottom:14px; border-radius:12px; overflow:hidden; cursor:pointer; break-inside:avoid; }
+  .tile img { width:100%; display:block; transition:transform .4s ease; }
+  .tile:hover img { transform:scale(1.05); }
+  /* Lightbox */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(0,0,0,0.9);
+    display:none;place-items:center;z-index:999;
+  }
+  .lightbox img{max-width:90%;max-height:85vh;border-radius:10px;}
+  .lightbox span{position:absolute;top:20px;right:30px;font-size:30px;color:#fff;cursor:pointer;}
+  /* Sections */
+  section { color:var(--text); }
+  #about, #contact { padding:70px 18px; text-align:center; }
+
+  .premium-btn {
+      background: linear-gradient(45deg, gold, orange);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Arial, sans-serif;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .premium-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  
+  <div class="menu">
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="" type="video/mp4">
+  </video>
+  <div class="photographer"></div>
+  <div class="mist"></div>
+ 
+  <div class="hero-inner">
+    <h1>Wildlife Through My Lens</h1>
+    <p class="sub">Predawn treks. Silent waits. One click that tells the story. Explore my favorite encounters from the wild.</p>
+    <a href="#gallery" class="cta">View Gallery</a>
+  </div>
+  <button class="sound-btn" id="soundBtn">🔊</button>
+  <audio id="forest-audio" loop>
+    <source src="" type="WhatsApp Audio 2025-08-13 at 3.54.51 PM.mp3eg">
+  </audio>
+</header>
+
+<section id="gallery">
+  <h2>Wildlife Gallery</h2>
+  <div class="gallery-grid">
+    <div class="tile"><img src="IMG_4617.JPEG" alt="Tiger in forest"></div>
+    <div class="tile"><img src="IMG_4618.JPEG" alt="Elephant at river"></div>
+    <div class="tile"><img src="IMG_4620.JPEG" alt="Eagle in flight"></div>
+    <div class="tile"><img src="IMG_4621.JPEG" alt="Deer in fog"></div>
+    <div class="tile"><img src="IMG_4623.JPEG" alt="Monkey family"></div>
+    <div class="tile"><img src="IMG_4624.JPEG" alt="Butterfly close-up"></div>
+    <div class="tile"><img src="IMG_4625.JPEG" alt="Leopard on tree"></div>
+    <div class="tile"><img src="IMG_4626.JPEG" alt="Peacock dancing"></div>
+    <div class="tile"><img src="IMG_4627.JPEG" alt="Snake in leaves"></div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>I’m Senthil, a wildlife enthusiast who captures nature’s beauty through my lens. My goal is to preserve wild moments for everyone to experience.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+ <button class="premium-btn" onclick="window.open('https://www.instagram.com/snap_sight_photography/?igsh=c3VranluZXR1cno3','_blank')"> click </button> 
+</section>
+
+<div class="lightbox" id="lightbox">
+  <img>
+  <span>×</span>
+</div>
+
+<script>
+/* Falling leaves */
+const canvas = document.getElementById('leaves-canvas');
+const ctx = canvas.getContext('2d');
+let leaves = [];
+let leafCount = 15;
+let w,h;
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+function initLeaves(){
+  leaves = [];
+  for(let i=0; i<leafCount; i++){
+    leaves.push({
+      x:Math.random()*w,
+      y:Math.random()*h,
+      size:20+Math.random()*20,
+      speed:1+Math.random()*2,
+      drift: (Math.random()*2)-1
+    });
+  }
+}
+function drawLeaves(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='rgba(255,255,200,0.8)';
+  leaves.forEach(leaf=>{
+    ctx.beginPath();
+    ctx.ellipse(leaf.x,leaf.y,leaf.size*0.5,leaf.size,Math.PI/4,0,Math.PI*2);
+    ctx.fill();
+  });
+}
+function updateLeaves(){
+  leaves.forEach(leaf=>{
+    leaf.y += leaf.speed;
+    leaf.x += leaf.drift;
+    if(leaf.y>h){ leaf.y = -20; leaf.x = Math.random()*w; }
+  });
+}
+function animate(){
+  drawLeaves();
+  updateLeaves();
+  requestAnimationFrame(animate);
+}
+initLeaves();
+animate();
+/* Sound toggle */
+const soundBtn = document.getElementById('soundBtn');
+const audio = document.getElementById('forest-audio');
+let playing = false;
+soundBtn.addEventListener('click', ()=>{
+  if(!playing){
+    audio.play();
+    soundBtn.textContent = "🔈";
+  }else{
+    audio.pause();
+    soundBtn.textContent = "🔊";
+  }
+  playing = !playing;
+});
+/* Lightbox */
+const galleryTiles = document.querySelectorAll('.tile img');
+const lb = document.getElementById('lightbox');
+const lbImg = lb.querySelector('img');
+const lbClose = lb.querySelector('span');
+galleryTiles.forEach(img => {
+  img.addEventListener('click', () => {
+    lbImg.src = img.src;
+    lb.style.display = 'grid';
+  });
+});
+lbClose.addEventListener('click', () => {
+  lb.style.display = 'none';
+});
+lb.addEventListener('click', e => {
+  if (e.target === lb) lb.style.display = 'none';
+});
+</script>
+</body>
+</html>
